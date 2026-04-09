@@ -17,8 +17,10 @@ func get_input():
 		last_input = "down"
 	elif Input.is_action_pressed("ui_left"):
 		last_input = "left"
+		$Sprite2D.flip_h = true
 	elif Input.is_action_pressed("ui_right"):
 		last_input = "right"
+		$Sprite2D.flip_h = false
 	print(last_input)
 	if Input.is_action_pressed("attack"):
 		if last_input == "up":
@@ -35,6 +37,7 @@ func get_input():
 		"""
 			make it so when an enemy is in one of these hit
 			boxes it hurts them 
+			
 			$left_attack/LeftHB.disabled = true
 			$down_attack/DownHB.disabled = true
 			$up_attack/UpHB.disabled = true
