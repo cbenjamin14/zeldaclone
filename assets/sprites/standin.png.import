@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://de30xqg2o4ixu"
-path="res://.godot/imported/standin.png-b1dd278cbf0dabcddc818620c59fba3c.ctex"
+path="res://.godot/imported/standin.png-854b086bb1af4439413fd55b4070e650.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://standin.png"
-dest_files=["res://.godot/imported/standin.png-b1dd278cbf0dabcddc818620c59fba3c.ctex"]
+source_file="res://assets/sprites/standin.png"
+dest_files=["res://.godot/imported/standin.png-854b086bb1af4439413fd55b4070e650.ctex"]
 
 [params]
 
