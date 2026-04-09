@@ -45,3 +45,6 @@ shape = SubResource("RectangleShape2D_onrkg")
 [node name="Hurtbox" type="CollisionShape2D" parent="." unique_id=1032450007]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_i3pqv")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1252921248]
+zoom = Vector2(2, 2)
