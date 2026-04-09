@@ -5,7 +5,7 @@ SDEV Assignment
 
 ## Contributors
 
- - Aiden (Programming)
+ - Aiden (Art + Programming)
  - Carson (Art + Programming)
  - Eli (Art + Programming)
 
