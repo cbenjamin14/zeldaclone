@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
-const ACCEL = 20.0
+@export var speed = 300.0
+@export var accel = 20.0
 var input : Vector2
 var last_input = null
 func get_input():
@@ -10,6 +10,7 @@ func get_input():
 	input.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up") 
 	if Input.is_action_pressed("interact"):
 		print("done")
+		
 	if Input.is_action_pressed("ui_up"):
 		last_input = "up"
 	elif Input.is_action_pressed("ui_down"):
@@ -30,7 +31,7 @@ func get_input():
 			$right_attack/RightHB.disabled = false
 		else:
 			pass
-		#rest of code here
+		#rest of code here, ill do it when theres an enemy
 		"""
 			make it so when an enemy is in one of these hit
 			boxes it hurts them 
@@ -43,5 +44,5 @@ func get_input():
 	
 func _physics_process(delta):
 	var action = get_input()
-	velocity = lerp(velocity, action * SPEED, delta * ACCEL)
+	velocity = lerp(velocity, action * speed, delta * accel)
 	move_and_slide()
