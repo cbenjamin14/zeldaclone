@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://mr6eapv27q76"]
+
+[ext_resource type="Texture2D" uid="uid://dyflc812givio" path="res://assets/sprites/Items/sword/Sword.png" id="1_vqyfv"]
+
+[sub_resource type="Animation" id="Animation_3ewfd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_3p5mj"]
+resource_name = "attack"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 3]
+}
+
+[sub_resource type="Animation" id="Animation_77u7o"]
+resource_name = "new_animation"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gdl6m"]
+_data = {
+&"RESET": SubResource("Animation_3ewfd"),
+&"attack": SubResource("Animation_3p5mj"),
+&"new_animation": SubResource("Animation_77u7o")
+}
+
+[node name="Sword" type="Sprite2D" unique_id=899851270]
+position = Vector2(0, -8)
+texture = ExtResource("1_vqyfv")
+hframes = 16
+vframes = 16
+frame = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=500777911]
+libraries/ = SubResource("AnimationLibrary_gdl6m")
