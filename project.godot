@@ -24,8 +24,8 @@ project/assembly_name="zeldaclone"
 
 [global_group]
 
-enemy=""
 player=""
+enemies=""
 
 [input]
 
