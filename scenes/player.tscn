@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://0sl8b3xs1imj" path="res://assets/sprites/player/ZeldaClonePlayerSprite.png" id="2_g2els"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
-size = Vector2(96, 20)
+size = Vector2(15, 3.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i3pqv"]
-size = Vector2(98, 97)
+size = Vector2(14, 15)
 
 [node name="Player" type="CharacterBody2D" unique_id=148422797]
 script = ExtResource("1_onrkg")
@@ -21,31 +21,31 @@ vframes = 16
 rotation = 1.5707964
 
 [node name="RightHB" type="CollisionShape2D" parent="right_attack" unique_id=1220788476]
-position = Vector2(0.5, -58)
+position = Vector2(1.4999996, -8.75)
 shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="left_attack" type="Area2D" parent="." unique_id=1252031167]
 rotation = 4.712389
 
 [node name="LeftHB" type="CollisionShape2D" parent="left_attack" unique_id=784705223]
-position = Vector2(1.9094118e-06, -58)
+position = Vector2(-1.0000001, -9)
 shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="down_attack" type="Area2D" parent="." unique_id=1579387378]
 rotation = 3.1415927
 
 [node name="DownHB" type="CollisionShape2D" parent="down_attack" unique_id=704403480]
-position = Vector2(1.9094118e-06, -58)
+position = Vector2(-1.6610327e-06, -10.5)
 shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="up_attack" type="Area2D" parent="." unique_id=507320912]
 
 [node name="UpHB" type="CollisionShape2D" parent="up_attack" unique_id=647152333]
-position = Vector2(1.9094118e-06, -58)
+position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="Hurtbox" type="CollisionShape2D" parent="." unique_id=1032450007]
-position = Vector2(0, -0.5)
+position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_i3pqv")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1252921248]

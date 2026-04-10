@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cngodxm5vtgu7"]
+
+[ext_resource type="Script" uid="uid://dhako7qn5k0fl" path="res://scripts/enemy.gd" id="1_4gyqm"]
+[ext_resource type="Texture2D" uid="uid://de30xqg2o4ixu" path="res://assets/sprites/standin.png" id="1_7k104"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7k104"]
+size = Vector2(97, 96)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=123837264]
+script = ExtResource("1_4gyqm")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2031679901]
+texture = ExtResource("1_7k104")
+
+[node name="Hurtbox" type="CollisionShape2D" parent="." unique_id=1594181262]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_7k104")
