@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 
-@export var speed = 300.0
-@export var accel = 20.0
+@export var speed = 100.0
+@export var accel = 10.0
 var input : Vector2
 var last_input = null
 func get_input():
@@ -21,7 +21,6 @@ func get_input():
 	elif Input.is_action_pressed("ui_right"):
 		last_input = "right"
 		$Sprite2D.flip_h = false
-	print(last_input)
 	if Input.is_action_pressed("attack"):
 		if last_input == "up":
 			$up_attack/UpHB.disabled = false
