@@ -4,22 +4,30 @@ extends CharacterBody2D
 var move
 var input : Vector2
 var last_input = null
+
+#need to fix animation looping -- carson
 func get_input():
 	move = Vector2.ZERO
 	if Input.is_action_pressed("up"):
 		last_input = "up"
 		move = Vector2(0, -1)
+		$Sprite2D/AnimationPlayer.play("walk_up")
 	elif Input.is_action_pressed("down"):
 		last_input = "down"
 		move = Vector2(0, 1)
+		$Sprite2D/AnimationPlayer.play("walk_down")
 	elif Input.is_action_pressed("left"):
 		last_input = "left"
 		$Sprite2D.flip_h = true
 		move = Vector2(-1, 0)
+		$Sprite2D/AnimationPlayer.play("walk_right")
 	elif Input.is_action_pressed("right"):
 		last_input = "right"
 		$Sprite2D.flip_h = false
 		move = Vector2(1, 0)
+		$Sprite2D/AnimationPlayer.play("walk_right")
+	else:
+		$Sprite2D/AnimationPlayer.play("idle")
 	if Input.is_action_just_pressed("interact"):
 		print("done")
 
