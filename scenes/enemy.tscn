@@ -6,7 +6,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7k104"]
 size = Vector2(97, 96)
 
-[node name="Enemy" type="CharacterBody2D" unique_id=123837264]
+[sub_resource type="CircleShape2D" id="CircleShape2D_md0e3"]
+radius = 198.0101
+
+[node name="Enemy" type="CharacterBody2D" unique_id=123837264 groups=["enemy"]]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_4gyqm")
@@ -17,3 +20,10 @@ texture = ExtResource("1_7k104")
 [node name="Hurtbox" type="CollisionShape2D" parent="." unique_id=1594181262]
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_7k104")
+
+[node name="Sight" type="Area2D" parent="." unique_id=251924606]
+
+[node name="detection_radius" type="CollisionShape2D" parent="Sight" unique_id=1875412882]
+shape = SubResource("CircleShape2D_md0e3")
+
+[connection signal="body_entered" from="Sight" to="." method="_on_sight_body_entered"]
