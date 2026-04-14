@@ -55,7 +55,7 @@ func attack():
 		print("attacked up")
 		await $Sprite2D/AnimationPlayer.animation_finished
 		currently_attacking = false
-
+		
 	elif last_input == "down":
 		$Sprite2D/AnimationPlayer.play("attack_down")
 		print("attacked down")
