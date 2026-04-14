@@ -4,9 +4,12 @@ extends CharacterBody2D
 var move
 var input : Vector2
 var last_input = null
+var currently_attacking = false
 #need to fix animation looping -- carson
 #need to add sword + other things
 func get_input():
+	if currently_attacking == true:
+		return Vector2.ZERO
 	move = Vector2.ZERO
 	if Input.is_action_pressed("up"):
 		last_input = "up"
@@ -33,6 +36,11 @@ func get_input():
 
 	if Input.is_action_just_pressed("attack"):
 		attack()
+	else:
+		$down_attack/DownHB.disabled = true
+		$up_attack/UpHB.disabled = true
+		$right_attack/RightHB.disabled = true
+		$left_attack/LeftHB.disabled = true
 	return move.normalized()
 	
 func _physics_process(delta):
@@ -41,35 +49,32 @@ func _physics_process(delta):
 	move_and_slide()
 	
 func attack():
-	print("attacked")
+	currently_attacking = true
 	if last_input == "up":
-		$up_attack/UpHB.disabled = false
 		$Sprite2D/AnimationPlayer.play("attack_up")
+		print("attacked up")
+		await $Sprite2D/AnimationPlayer.animation_finished
+		currently_attacking = false
+
 	elif last_input == "down":
-		$down_attack/DownHB.disabled = false
 		$Sprite2D/AnimationPlayer.play("attack_down")
+		print("attacked down")
+		await $Sprite2D/AnimationPlayer.animation_finished
+		currently_attacking = false
+
 	elif last_input == "left":
-		$left_attack/LeftHB.disabled = false
 		$Sprite2D/AnimationPlayer.play("attack_left")
+		print("attacked left")
+		await $Sprite2D/AnimationPlayer.animation_finished
+		currently_attacking = false
+		
 	elif last_input == "right":
-		$right_attack/RightHB.disabled = false
 		$Sprite2D/AnimationPlayer.play("attack_right")
+		print("attacked right")
+		await $Sprite2D/AnimationPlayer.animation_finished
+		currently_attacking = false
 	else:
 		pass
-	"""
-		make it so when an enemy is in one of these hit
-		boxes it hurts them 
-		
-		$left_attack/LeftHB.disabled = true
-		$down_attack/DownHB.disabled = true
-		$up_attack/UpHB.disabled = true
-		$right_attack/RightHB.disabled = true
-	"""
-
-
-
-
-
 
 
 func _attack_up(body: Node2D) -> void:
