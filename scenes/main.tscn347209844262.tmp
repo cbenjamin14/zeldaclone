@@ -128,9 +128,6 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tefeu"]
 size = Vector2(3, 15)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sugp2"]
-size = Vector2(32, 2)
-
 [node name="Main" type="Node2D" unique_id=910557096]
 script = ExtResource("1_sugp2")
 
@@ -192,54 +189,6 @@ shape = SubResource("RectangleShape2D_tefeu")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="starttoleft" unique_id=1399131195]
 position = Vector2(-35, -24)
 shape = SubResource("RectangleShape2D_tefeu")
-
-[node name="0to2" type="Area2D" parent="." unique_id=1331499411]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="0to2" unique_id=1087313665]
-position = Vector2(194, -24)
-shape = SubResource("RectangleShape2D_tefeu")
-
-[node name="2to0" type="Area2D" parent="." unique_id=1618438822]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="2to0" unique_id=145582622]
-position = Vector2(175, -24)
-shape = SubResource("RectangleShape2D_tefeu")
-
-[node name="0to3" type="Area2D" parent="." unique_id=1030840513]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="0to3" unique_id=2065815428]
-position = Vector2(80, -98)
-shape = SubResource("RectangleShape2D_sugp2")
-
-[node name="3to0" type="Area2D" parent="." unique_id=1156435657]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="3to0" unique_id=1448309053]
-position = Vector2(80, -79)
-shape = SubResource("RectangleShape2D_sugp2")
-
-[node name="3to4" type="Area2D" parent="." unique_id=26083699]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="3to4" unique_id=1192035648]
-position = Vector2(80, -225)
-shape = SubResource("RectangleShape2D_sugp2")
-
-[node name="4to3" type="Area2D" parent="." unique_id=383828702]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="4to3" unique_id=1403034839]
-position = Vector2(80, -207)
-shape = SubResource("RectangleShape2D_sugp2")
-
-[node name="4to7" type="Area2D" parent="." unique_id=1711765692]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="4to7" unique_id=1112749065]
-position = Vector2(80, -354)
-shape = SubResource("RectangleShape2D_sugp2")
-
-[node name="7to4" type="Area2D" parent="." unique_id=611269933]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="7to4" unique_id=1365670256]
-position = Vector2(80, -335)
-shape = SubResource("RectangleShape2D_sugp2")
 
 [connection signal="area_entered" from="leftotstart" to="." method="_on_leftotstart_area_entered"]
 [connection signal="body_shape_entered" from="leftotstart" to="." method="_on_leftotstart_body_shape_entered"]
