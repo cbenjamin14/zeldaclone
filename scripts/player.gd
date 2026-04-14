@@ -5,6 +5,7 @@ var move
 var input : Vector2
 var last_input = null
 #need to fix animation looping -- carson
+#need to add sword + other things
 func get_input():
 	move = Vector2.ZERO
 	if Input.is_action_pressed("up"):
