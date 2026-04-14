@@ -4,7 +4,6 @@ extends CharacterBody2D
 var move
 var input : Vector2
 var last_input = null
-
 #need to fix animation looping -- carson
 #need to add sword + other things
 func get_input():
@@ -45,15 +44,18 @@ func attack():
 	print("attacked")
 	if last_input == "up":
 		$up_attack/UpHB.disabled = false
+		$Sprite2D/AnimationPlayer.play("attack_up")
 	elif last_input == "down":
 		$down_attack/DownHB.disabled = false
+		$Sprite2D/AnimationPlayer.play("attack_down")
 	elif last_input == "left":
 		$left_attack/LeftHB.disabled = false
+		$Sprite2D/AnimationPlayer.play("attack_left")
 	elif last_input == "right":
 		$right_attack/RightHB.disabled = false
+		$Sprite2D/AnimationPlayer.play("attack_right")
 	else:
 		pass
-	#rest of code here, ill do it when theres an enemy
 	"""
 		make it so when an enemy is in one of these hit
 		boxes it hurts them 
@@ -63,3 +65,27 @@ func attack():
 		$up_attack/UpHB.disabled = true
 		$right_attack/RightHB.disabled = true
 	"""
+
+
+
+
+
+
+
+func _attack_up(body: Node2D) -> void:
+	if body.is_in_group("enemies"):
+		pass
+		
+
+func _attack_down(body: Node2D) -> void:
+	if body.is_in_group("enemies"):
+		pass
+
+
+func _attack_left(body: Node2D) -> void:
+	if body.is_in_group("enemies"):
+		pass
+
+func _attack_right(body: Node2D) -> void:
+	if body.is_in_group("enemies"):
+		pass

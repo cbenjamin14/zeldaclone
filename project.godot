@@ -22,6 +22,11 @@ Global_script="*uid://ccd53lvasyevj"
 
 project/assembly_name="zeldaclone"
 
+[global_group]
+
+player=""
+enemies=""
+
 [input]
 
 ui_left={

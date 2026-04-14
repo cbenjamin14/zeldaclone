@@ -160,7 +160,7 @@ size = Vector2(15, 3.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i3pqv"]
 size = Vector2(14, 15)
 
-[node name="Player" type="CharacterBody2D" unique_id=148422797]
+[node name="Player" type="CharacterBody2D" unique_id=148422797 groups=["player"]]
 collision_layer = 2
 collision_mask = 15
 script = ExtResource("1_onrkg")
@@ -208,3 +208,8 @@ shape = SubResource("RectangleShape2D_i3pqv")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1252921248]
 zoom = Vector2(2, 2)
+
+[connection signal="body_entered" from="right_attack" to="." method="_attack_right"]
+[connection signal="body_entered" from="left_attack" to="." method="_attack_left"]
+[connection signal="body_entered" from="down_attack" to="." method="_attack_down"]
+[connection signal="body_entered" from="up_attack" to="." method="_attack_up"]
