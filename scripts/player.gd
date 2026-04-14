@@ -5,6 +5,7 @@ var move
 var input : Vector2
 var last_input = null
 var currently_attacking = false
+#need to make slightly faster -- Eli
 #need to fix animation looping -- carson
 #need to add sword + other things
 func get_input():
