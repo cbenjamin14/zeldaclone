@@ -64,7 +64,7 @@ func attack():
 		print("attacked up")
 		$Sword_up.show()
 		$Sword_up/AnimationPlayer.play("attack")
-		await $Sword_up/AnimationPlayer.animation_finished
+		#await $Sword_up/AnimationPlayer.animation_finished
 		await $Sprite2D/AnimationPlayer.animation_finished
 		$Sword_up.hide()
 		currently_attacking = false
@@ -74,7 +74,7 @@ func attack():
 		print("attacked down")
 		$Sword_down.show()
 		$Sword_down/AnimationPlayer.play("attack")
-		await $Sword_down/AnimationPlayer.animation_finished
+		#await $Sword_down/AnimationPlayer.animation_finished
 		await $Sprite2D/AnimationPlayer.animation_finished
 		$Sword_down.hide()
 		currently_attacking = false
@@ -84,7 +84,7 @@ func attack():
 		print("attacked left")
 		$Sword_left.show()
 		$Sword_left/AnimationPlayer.play("attack")
-		await $Sword_left/AnimationPlayer.animation_finished
+		#await $Sword_left/AnimationPlayer.animation_finished
 		await $Sprite2D/AnimationPlayer.animation_finished
 		$Sword_left.hide()
 		currently_attacking = false
@@ -94,7 +94,7 @@ func attack():
 		print("attacked right")
 		$Sword_right.show()
 		$Sword_right/AnimationPlayer.play("attack")
-		await $Sword_right/AnimationPlayer.animation_finished
+		#await $Sword_right/AnimationPlayer.animation_finished
 		await $Sprite2D/AnimationPlayer.animation_finished
 		$Sword_right.hide()
 		currently_attacking = false
