@@ -16,8 +16,10 @@ func get_input():
 	move = Vector2.ZERO
 	if Input.is_action_pressed("sprint"):
 		sprint = true
+		$Sprite2D/AnimationPlayer.speed_scale = sprint_mult
 	else:
 		sprint = false
+		$Sprite2D/AnimationPlayer.speed_scale = 1
 	if Input.is_action_pressed("up"):
 		last_input = "up"
 		move = Vector2(0, -1)
@@ -62,6 +64,7 @@ func _physics_process(delta):
 #need to fix sword anim on attack, the player freezes for some reason -- carson
 func attack():
 	currently_attacking = true
+	$Sprite2D/AnimationPlayer.speed_scale = 1
 	if last_input == "up":
 		$Sprite2D/AnimationPlayer.play("attack_up")
 		print("attacked up")
