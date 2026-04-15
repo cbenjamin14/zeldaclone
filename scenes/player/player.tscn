@@ -285,6 +285,7 @@ sprint_mult = 2.0
 
 [node name="Sword_up" parent="." unique_id=899851270 instance=ExtResource("3_gmlin")]
 visible = false
+position = Vector2(1, -8)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2133869291]
 texture = ExtResource("2_g2els")

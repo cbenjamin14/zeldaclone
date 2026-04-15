@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+@export var health = 3
 
 
 func _physics_process(delta: float) -> void:
