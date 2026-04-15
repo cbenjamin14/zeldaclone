@@ -1,18 +1,23 @@
 extends CharacterBody2D
 
-@export var base_speed_mult = 3000
-@export var sprint_mult = 100
+@export var base_speed = 3000
+@export var sprint_mult = 1.5 #made it 3 in the player for convenience, change later
 var move
 var input : Vector2
 var last_input = null
 var currently_attacking = false
-#need to make slightly faster -- Eli
+var sprint = false
+#need to make slightly faster -- Eli 
 #need to fix animation looping -- carson
 #need to add sword + other things
 func get_input():
 	if currently_attacking == true:
 		return Vector2.ZERO
 	move = Vector2.ZERO
+	if Input.is_action_pressed("sprint"):
+		sprint = true
+	else:
+		sprint = false
 	if Input.is_action_pressed("up"):
 		last_input = "up"
 		move = Vector2(0, -1)
@@ -47,14 +52,12 @@ func get_input():
 	
 func _physics_process(delta):
 	var action = get_input()
-	velocity = action * base_speed_mult * delta
+	if sprint == false:
+		velocity = action * base_speed * delta
+	else:
+		velocity = action * (base_speed * sprint_mult) * delta
 	move_and_slide()
-	#sprint -- doesn't work / not sure why | carson
-	#if Input.is_action_pressed("sprint"):
-		#base_speed_mult + sprint_mult
-	#else:
-		#base_speed_mult = base_speed_mult
-	#-----------------------------------
+
 	
 #need to fix sword anim on attack, the player freezes for some reason -- carson
 func attack():
@@ -98,8 +101,15 @@ func attack():
 		await $Sprite2D/AnimationPlayer.animation_finished
 		$Sword_right.hide()
 		currently_attacking = false
-	else:
-		pass
+	else: #means they probably didt move yet, else thats not good
+		$Sprite2D/AnimationPlayer.play("attack_down")
+		print("default attack")
+		$Sword_down.show()
+		$Sword_down/AnimationPlayer.play("attack")
+		#await $Sword_down/AnimationPlayer.animation_finished
+		await $Sprite2D/AnimationPlayer.animation_finished
+		$Sword_down.hide()
+		currently_attacking = false
 
 
 func _attack_up(body: Node2D) -> void:
