@@ -1,2 +1,2 @@
 extends Node
-var room = 1
+var room = 0
