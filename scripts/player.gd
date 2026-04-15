@@ -7,6 +7,7 @@ var input : Vector2
 var last_input = null
 var currently_attacking = false
 var sprint = false
+
 #need to make slightly faster -- Eli 
 #need to fix animation looping -- carson
 #need to add sword + other things
@@ -68,6 +69,8 @@ func _physics_process(delta):
 
 	
 func attack():
+	if !$Attack_cd.is_stopped():
+		return
 	currently_attacking = true
 	$Sprite2D/AnimationPlayer.speed_scale = 1 #this is so the sword doesnt swing faster
 	if last_input == "up":
@@ -77,6 +80,7 @@ func attack():
 		$Sword_up/AnimationPlayer.play("attack")
 		await $Sprite2D/AnimationPlayer.animation_finished
 		$Sword_up.hide()
+		$Attack_cd.start()
 		currently_attacking = false
 		
 	elif last_input == "down":
@@ -86,6 +90,7 @@ func attack():
 		$Sword_down/AnimationPlayer.play("attack")
 		await $Sprite2D/AnimationPlayer.animation_finished
 		$Sword_down.hide()
+		$Attack_cd.start()
 		currently_attacking = false
 
 	elif last_input == "left":
@@ -95,6 +100,7 @@ func attack():
 		$Sword_left/AnimationPlayer.play("attack")
 		await $Sprite2D/AnimationPlayer.animation_finished
 		$Sword_left.hide()
+		$Attack_cd.start()
 		currently_attacking = false
 		
 	elif last_input == "right":
@@ -104,7 +110,9 @@ func attack():
 		$Sword_right/AnimationPlayer.play("attack")
 		await $Sprite2D/AnimationPlayer.animation_finished
 		$Sword_right.hide()
+		$Attack_cd.start()
 		currently_attacking = false
+		
 	else: #means they probably didt move yet, else thats not good
 		$Sprite2D/AnimationPlayer.play("attack_down")
 		print("default attack")
@@ -112,6 +120,7 @@ func attack():
 		$Sword_down/AnimationPlayer.play("attack")
 		await $Sprite2D/AnimationPlayer.animation_finished
 		$Sword_down.hide()
+		$Attack_cd.start()
 		currently_attacking = false
 
 
