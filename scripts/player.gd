@@ -20,6 +20,12 @@ func get_input():
 	else:
 		sprint = false
 		$Sprite2D/AnimationPlayer.speed_scale = 1
+		
+	"""
+	this section of code is the movment, the movement is just x
+	and y without calculating for pressing both, this means
+	it will just go to your first input when you press 2 things
+	"""
 	if Input.is_action_pressed("up"):
 		last_input = "up"
 		move = Vector2(0, -1)
@@ -45,7 +51,7 @@ func get_input():
 
 	if Input.is_action_just_pressed("attack"):
 		attack()
-	else:
+	else: 
 		$down_attack/DownHB.disabled = true
 		$up_attack/UpHB.disabled = true
 		$right_attack/RightHB.disabled = true
@@ -53,24 +59,22 @@ func get_input():
 	return move.normalized()
 	
 func _physics_process(delta):
-	var action = get_input()
-	if sprint == false:
+	var action = get_input() 
+	if sprint == false: 
 		velocity = action * base_speed * delta
-	else:
+	else: 
 		velocity = action * (base_speed * sprint_mult) * delta
-	move_and_slide()
+	move_and_slide() #velocity is what move_and_slide takes so if you want to edit the speed change what it equals
 
 	
-#need to fix sword anim on attack, the player freezes for some reason -- carson
 func attack():
 	currently_attacking = true
-	$Sprite2D/AnimationPlayer.speed_scale = 1
+	$Sprite2D/AnimationPlayer.speed_scale = 1 #this is so the sword doesnt swing faster
 	if last_input == "up":
 		$Sprite2D/AnimationPlayer.play("attack_up")
 		print("attacked up")
 		$Sword_up.show()
 		$Sword_up/AnimationPlayer.play("attack")
-		#await $Sword_up/AnimationPlayer.animation_finished
 		await $Sprite2D/AnimationPlayer.animation_finished
 		$Sword_up.hide()
 		currently_attacking = false
@@ -80,7 +84,6 @@ func attack():
 		print("attacked down")
 		$Sword_down.show()
 		$Sword_down/AnimationPlayer.play("attack")
-		#await $Sword_down/AnimationPlayer.animation_finished
 		await $Sprite2D/AnimationPlayer.animation_finished
 		$Sword_down.hide()
 		currently_attacking = false
@@ -90,7 +93,6 @@ func attack():
 		print("attacked left")
 		$Sword_left.show()
 		$Sword_left/AnimationPlayer.play("attack")
-		#await $Sword_left/AnimationPlayer.animation_finished
 		await $Sprite2D/AnimationPlayer.animation_finished
 		$Sword_left.hide()
 		currently_attacking = false
@@ -100,7 +102,6 @@ func attack():
 		print("attacked right")
 		$Sword_right.show()
 		$Sword_right/AnimationPlayer.play("attack")
-		#await $Sword_right/AnimationPlayer.animation_finished
 		await $Sprite2D/AnimationPlayer.animation_finished
 		$Sword_right.hide()
 		currently_attacking = false
@@ -109,7 +110,6 @@ func attack():
 		print("default attack")
 		$Sword_down.show()
 		$Sword_down/AnimationPlayer.play("attack")
-		#await $Sword_down/AnimationPlayer.animation_finished
 		await $Sprite2D/AnimationPlayer.animation_finished
 		$Sword_down.hide()
 		currently_attacking = false
