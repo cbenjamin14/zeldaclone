@@ -8,7 +8,7 @@ var last_input = null
 var currently_attacking = false
 var sprint = false
 
-#need to make slightly faster -- Eli 
+#can we get collisions like in our other games? -- Eli 
 #need to fix animation looping -- carson
 #need to add sword + other things
 func get_input():
