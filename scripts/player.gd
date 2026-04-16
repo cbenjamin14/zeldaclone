@@ -1,5 +1,4 @@
 extends CharacterBody2D
-
 @export var base_speed = 3000
 @export var sprint_mult = 1.5 #made it 3 in the player for convenience, change later
 @export var hp = 5
@@ -63,7 +62,17 @@ func _physics_process(delta):
 		velocity = action * base_speed * delta
 	else: 
 		velocity = action * (base_speed * sprint_mult) * delta
-	move_and_slide() #velocity is what move_and_slide takes so if you want to edit the speed change what it equals
+	 #velocity is what move_and_slide takes so if you want to edit the speed change what it equals
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if collider == null:
+			continue
+		#if collision.get_collider().is_in_group("danger"):
+			#hurt()
+		if collision.get_collider().is_in_group("pushable"):
+			collider.apply_central_impulse(-collision.get_normal())
+	move_and_slide()
 
 	
 func attack():
