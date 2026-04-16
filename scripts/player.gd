@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var base_speed = 3000
 @export var sprint_mult = 1.5 #made it 3 in the player for convenience, change later
+@export var hp = 5
 var move
 var input : Vector2
 var last_input = null
@@ -21,12 +22,9 @@ func get_input():
 	else:
 		sprint = false
 		$Sprite2D/AnimationPlayer.speed_scale = 1
-		
-	"""
-	this section of code is the movment, the movement is just x
-	and y without calculating for pressing both, this means
-	it will just go to your first input when you press 2 things
-	"""
+#this section of code is the movment, the movement is just x
+#and y without calculating for pressing both, this means
+#it will just go to your first input when you press 2 things
 	if Input.is_action_pressed("up"):
 		last_input = "up"
 		move = Vector2(0, -1)
