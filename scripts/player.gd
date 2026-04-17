@@ -12,6 +12,8 @@ var sprint = false
 #can we get collisions like in our other games? -- Eli 
 #need to fix animation looping -- carson
 #need to add sword + other things
+func _ready() -> void:
+	global.player = self
 
 func get_input():
 	if currently_attacking == true:
