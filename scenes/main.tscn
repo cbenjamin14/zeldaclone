@@ -51,10 +51,6 @@ texture = ExtResource("1_ig7tw")
 physics_layer_0/collision_layer = 4
 sources/1 = SubResource("TileSetAtlasSource_sugp2")
 
-[sub_resource type="GDScript" id="GDScript_sugp2"]
-script/source = "extends RigidBody2D
-"
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wfyh"]
 size = Vector2(16, 16)
 
@@ -786,6 +782,7 @@ position = Vector2(83.00001, 15)
 scale = Vector2(0.9, 0.9)
 collision_layer = 1
 collision_mask = 5
+sprint_mult = 1.5
 
 [node name="Pushable-Block" type="RigidBody2D" parent="." unique_id=455664863 groups=["pushable"]]
 position = Vector2(-152, -664)
@@ -797,7 +794,6 @@ lock_rotation = true
 contact_monitor = true
 max_contacts_reported = 1
 linear_damp = 30.0
-script = SubResource("GDScript_sugp2")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pushable-Block" unique_id=304386797]
@@ -817,7 +813,6 @@ gravity_scale = 0.0
 contact_monitor = true
 max_contacts_reported = 1
 linear_damp = 30.0
-script = SubResource("GDScript_sugp2")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Block-Block" unique_id=1476338374]
