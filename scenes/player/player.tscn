@@ -69,7 +69,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_slox1"]
 resource_name = "attack_down"
-length = 0.3
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -89,7 +89,7 @@ tracks/1/path = NodePath("../down_attack/DownHB:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -97,7 +97,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_dovo2"]
 resource_name = "attack_left"
-length = 0.3
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -117,7 +117,7 @@ tracks/1/path = NodePath("../left_attack/LeftHB:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -125,7 +125,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_6c3fc"]
 resource_name = "attack_right"
-length = 0.3
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -145,7 +145,7 @@ tracks/1/path = NodePath("../right_attack/RightHB:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -153,7 +153,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_u3byp"]
 resource_name = "attack_up"
-length = 0.3
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -173,7 +173,7 @@ tracks/1/path = NodePath("../up_attack/UpHB:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -272,19 +272,20 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
-size = Vector2(18, 3.75)
+size = Vector2(17.5, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i3pqv"]
-size = Vector2(14, 15)
+size = Vector2(12, 13)
 
 [node name="Player" type="CharacterBody2D" unique_id=148422797 groups=["player"]]
 collision_layer = 2
 collision_mask = 15
 script = ExtResource("1_onrkg")
+sprint_mult = 2.0
 
 [node name="Sword_up" parent="." unique_id=899851270 instance=ExtResource("3_gmlin")]
 visible = false
-position = Vector2(1, -6)
+position = Vector2(1, -8)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2133869291]
 texture = ExtResource("2_g2els")
@@ -300,7 +301,7 @@ autoplay = &"idle"
 rotation = 1.5707964
 
 [node name="RightHB" type="CollisionShape2D" parent="right_attack" unique_id=1220788476]
-position = Vector2(1.4999996, -8.75)
+position = Vector2(1.7499996, -8.9375)
 shape = SubResource("RectangleShape2D_onrkg")
 disabled = true
 
@@ -336,18 +337,22 @@ zoom = Vector2(2, 2)
 
 [node name="Sword_down" parent="." unique_id=1974678838 instance=ExtResource("3_gmlin")]
 visible = false
-position = Vector2(0, 8)
+position = Vector2(-1, 11)
 rotation = 3.1415927
 
 [node name="Sword_left" parent="." unique_id=2069929749 instance=ExtResource("3_gmlin")]
 visible = false
-position = Vector2(-7, -1)
+position = Vector2(-9, 2)
 rotation = -1.5707964
 
 [node name="Sword_right" parent="." unique_id=113482914 instance=ExtResource("3_gmlin")]
 visible = false
-position = Vector2(8, 1.3552527e-20)
+position = Vector2(9, 3)
 rotation = 1.5707964
+
+[node name="Attack_cd" type="Timer" parent="." unique_id=296057731]
+wait_time = 0.15
+one_shot = true
 
 [connection signal="body_entered" from="right_attack" to="." method="_attack_right"]
 [connection signal="body_entered" from="left_attack" to="." method="_attack_left"]

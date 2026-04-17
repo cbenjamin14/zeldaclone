@@ -1,18 +1,32 @@
 extends CharacterBody2D
-
-@export var base_speed_mult = 3000
-@export var sprint_mult = 100
+@export var base_speed = 3000
+@export var sprint_mult = 1.5 #made it 3 in the player for convenience, change later
+@export var hp = 5
+@export var colliding_mult = 8 #just changes how fast you push blocks
 var move
 var input : Vector2
 var last_input = null
 var currently_attacking = false
-#need to make slightly faster -- Eli
+var sprint = false
+
+#small bug where if you go on the top of the moveable box it drags you down with it --Aiden
+#can we get collisions like in our other games? -- Eli 
 #need to fix animation looping -- carson
 #need to add sword + other things
+
 func get_input():
 	if currently_attacking == true:
 		return Vector2.ZERO
 	move = Vector2.ZERO
+	if Input.is_action_pressed("sprint"):
+		sprint = true
+		$Sprite2D/AnimationPlayer.speed_scale = sprint_mult
+	else:
+		sprint = false
+		$Sprite2D/AnimationPlayer.speed_scale = 1
+#this section of code is the movment, the movement is just x
+#and y without calculating for pressing both, this means
+#it will just go to your first input when you press 2 things
 	if Input.is_action_pressed("up"):
 		last_input = "up"
 		move = Vector2(0, -1)
@@ -38,7 +52,7 @@ func get_input():
 
 	if Input.is_action_just_pressed("attack"):
 		attack()
-	else:
+	else: 
 		$down_attack/DownHB.disabled = true
 		$up_attack/UpHB.disabled = true
 		$right_attack/RightHB.disabled = true
@@ -46,27 +60,37 @@ func get_input():
 	return move.normalized()
 	
 func _physics_process(delta):
-	var action = get_input()
-	velocity = action * base_speed_mult * delta
+	var action = get_input() 
+	if sprint == false: 
+		velocity = action * base_speed * delta
+	else: 
+		velocity = action * (base_speed * sprint_mult) * delta
+	 #velocity is what move_and_slide takes so if you want to edit the speed change what it equals
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if collider == null:
+			continue
+		#if collision.get_collider().is_in_group("danger"):
+			#hurt()
+		if collision.get_collider().is_in_group("pushable"):
+			collider.apply_central_impulse(-collision.get_normal() * colliding_mult)
 	move_and_slide()
-	#sprint -- doesn't work / not sure why | carson
-	#if Input.is_action_pressed("sprint"):
-		#base_speed_mult + sprint_mult
-	#else:
-		#base_speed_mult = base_speed_mult
-	#-----------------------------------
+
 	
-#need to fix sword anim on attack, the player freezes for some reason -- carson
 func attack():
+	if !$Attack_cd.is_stopped():
+		return
 	currently_attacking = true
+	$Sprite2D/AnimationPlayer.speed_scale = 1 #this is so the sword doesnt swing faster
 	if last_input == "up":
 		$Sprite2D/AnimationPlayer.play("attack_up")
 		print("attacked up")
 		$Sword_up.show()
 		$Sword_up/AnimationPlayer.play("attack")
-		#await $Sword_up/AnimationPlayer.animation_finished
 		await $Sprite2D/AnimationPlayer.animation_finished
 		$Sword_up.hide()
+		$Attack_cd.start()
 		currently_attacking = false
 		
 	elif last_input == "down":
@@ -74,9 +98,9 @@ func attack():
 		print("attacked down")
 		$Sword_down.show()
 		$Sword_down/AnimationPlayer.play("attack")
-		#await $Sword_down/AnimationPlayer.animation_finished
 		await $Sprite2D/AnimationPlayer.animation_finished
 		$Sword_down.hide()
+		$Attack_cd.start()
 		currently_attacking = false
 
 	elif last_input == "left":
@@ -84,9 +108,9 @@ func attack():
 		print("attacked left")
 		$Sword_left.show()
 		$Sword_left/AnimationPlayer.play("attack")
-		#await $Sword_left/AnimationPlayer.animation_finished
 		await $Sprite2D/AnimationPlayer.animation_finished
 		$Sword_left.hide()
+		$Attack_cd.start()
 		currently_attacking = false
 		
 	elif last_input == "right":
@@ -94,12 +118,20 @@ func attack():
 		print("attacked right")
 		$Sword_right.show()
 		$Sword_right/AnimationPlayer.play("attack")
-		#await $Sword_right/AnimationPlayer.animation_finished
 		await $Sprite2D/AnimationPlayer.animation_finished
 		$Sword_right.hide()
+		$Attack_cd.start()
 		currently_attacking = false
-	else:
-		pass
+		
+	else: #means they probably didt move yet, else thats not good
+		$Sprite2D/AnimationPlayer.play("attack_down")
+		print("default attack")
+		$Sword_down.show()
+		$Sword_down/AnimationPlayer.play("attack")
+		await $Sprite2D/AnimationPlayer.animation_finished
+		$Sword_down.hide()
+		$Attack_cd.start()
+		currently_attacking = false
 
 
 func _attack_up(body: Node2D) -> void:
