@@ -57,7 +57,7 @@ func get_input():
 		$right_attack/RightHB.disabled = true
 		$left_attack/LeftHB.disabled = true
 	return move.normalized()
-	
+	#six seven
 func _physics_process(delta):
 	var action = get_input() 
 	if sprint == false: 
