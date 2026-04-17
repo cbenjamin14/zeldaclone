@@ -1,0 +1,360 @@
+[gd_scene format=3 uid="uid://bq83xrun5j2xw"]
+
+[ext_resource type="Script" uid="uid://dw6ks4j163g6v" path="res://scripts/player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://0sl8b3xs1imj" path="res://assets/sprites/player/ZeldaClonePlayerSprite.png" id="2_g2els"]
+[ext_resource type="PackedScene" uid="uid://mr6eapv27q76" path="res://scenes/player/playerItems/sword.tscn" id="3_gmlin"]
+
+[sub_resource type="Animation" id="Animation_mb0jw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../up_attack/UpHB:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../down_attack/DownHB:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../left_attack/LeftHB:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../right_attack/RightHB:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_slox1"]
+resource_name = "attack_down"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [16]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../down_attack/DownHB:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_dovo2"]
+resource_name = "attack_left"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [19]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../left_attack/LeftHB:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_6c3fc"]
+resource_name = "attack_right"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [19]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../right_attack/RightHB:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_u3byp"]
+resource_name = "attack_up"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [21]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../up_attack/UpHB:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_va4i7"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_th13l"]
+resource_name = "item_pickup"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [32]
+}
+
+[sub_resource type="Animation" id="Animation_clgcu"]
+resource_name = "walk_down"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_np63j"]
+resource_name = "walk_right"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.53),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_26e3e"]
+resource_name = "walk_up"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.53),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dovo2"]
+_data = {
+&"RESET": SubResource("Animation_mb0jw"),
+&"attack_down": SubResource("Animation_slox1"),
+&"attack_left": SubResource("Animation_dovo2"),
+&"attack_right": SubResource("Animation_6c3fc"),
+&"attack_up": SubResource("Animation_u3byp"),
+&"idle": SubResource("Animation_va4i7"),
+&"item_pickup": SubResource("Animation_th13l"),
+&"walk_down": SubResource("Animation_clgcu"),
+&"walk_right": SubResource("Animation_np63j"),
+&"walk_up": SubResource("Animation_26e3e")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
+size = Vector2(17.5, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3pqv"]
+size = Vector2(12, 13)
+
+[node name="Player" type="CharacterBody2D" unique_id=148422797 groups=["player"]]
+collision_layer = 2
+collision_mask = 15
+script = ExtResource("1_onrkg")
+sprint_mult = 2.0
+
+[node name="Sword_up" parent="." unique_id=899851270 instance=ExtResource("3_gmlin")]
+visible = false
+position = Vector2(1, -8)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2133869291]
+texture = ExtResource("2_g2els")
+hframes = 16
+vframes = 16
+frame = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" unique_id=1080852936]
+libraries/ = SubResource("AnimationLibrary_dovo2")
+autoplay = &"idle"
+
+[node name="right_attack" type="Area2D" parent="." unique_id=1128638093]
+rotation = 1.5707964
+
+[node name="RightHB" type="CollisionShape2D" parent="right_attack" unique_id=1220788476]
+position = Vector2(1.7499996, -8.9375)
+shape = SubResource("RectangleShape2D_onrkg")
+disabled = true
+
+[node name="left_attack" type="Area2D" parent="." unique_id=1252031167]
+rotation = 4.712389
+
+[node name="LeftHB" type="CollisionShape2D" parent="left_attack" unique_id=784705223]
+position = Vector2(-1.0000001, -9)
+shape = SubResource("RectangleShape2D_onrkg")
+disabled = true
+
+[node name="down_attack" type="Area2D" parent="." unique_id=1579387378]
+rotation = 3.1415927
+
+[node name="DownHB" type="CollisionShape2D" parent="down_attack" unique_id=704403480]
+position = Vector2(-9.616506e-07, -11)
+shape = SubResource("RectangleShape2D_onrkg")
+disabled = true
+
+[node name="up_attack" type="Area2D" parent="." unique_id=507320912]
+
+[node name="UpHB" type="CollisionShape2D" parent="up_attack" unique_id=647152333]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_onrkg")
+disabled = true
+
+[node name="Hurtbox" type="CollisionShape2D" parent="." unique_id=1032450007]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_i3pqv")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1252921248]
+zoom = Vector2(2, 2)
+
+[node name="Sword_down" parent="." unique_id=1974678838 instance=ExtResource("3_gmlin")]
+visible = false
+position = Vector2(-1, 11)
+rotation = 3.1415927
+
+[node name="Sword_left" parent="." unique_id=2069929749 instance=ExtResource("3_gmlin")]
+visible = false
+position = Vector2(-9, 2)
+rotation = -1.5707964
+
+[node name="Sword_right" parent="." unique_id=113482914 instance=ExtResource("3_gmlin")]
+visible = false
+position = Vector2(9, 3)
+rotation = 1.5707964
+
+[node name="Attack_cd" type="Timer" parent="." unique_id=296057731]
+wait_time = 0.15
+one_shot = true
+
+[connection signal="body_entered" from="right_attack" to="." method="_attack_right"]
+[connection signal="body_entered" from="left_attack" to="." method="_attack_left"]
+[connection signal="body_entered" from="down_attack" to="." method="_attack_down"]
+[connection signal="body_entered" from="up_attack" to="." method="_attack_up"]
