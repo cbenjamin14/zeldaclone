@@ -53,12 +53,6 @@ sources/1 = SubResource("TileSetAtlasSource_sugp2")
 
 [sub_resource type="GDScript" id="GDScript_sugp2"]
 script/source = "extends RigidBody2D
-func _process(delta: float) -> void:
-	if global.ispushing==true:
-		freeze=false
-		sleeping=false
-	else:
-		sleeping=true
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wfyh"]
@@ -796,9 +790,10 @@ collision_mask = 5
 [node name="Pushable-Block" type="RigidBody2D" parent="." unique_id=455664863 groups=["pushable"]]
 position = Vector2(-152, -664)
 collision_layer = 5
-collision_mask = 5
+collision_mask = 133
 mass = 0.3
 gravity_scale = 0.0
+lock_rotation = true
 contact_monitor = true
 max_contacts_reported = 1
 linear_damp = 30.0
@@ -812,6 +807,21 @@ shape = SubResource("RectangleShape2D_0wfyh")
 texture = ExtResource("1_ig7tw")
 region_enabled = true
 region_rect = Rect2(48, 0, 16, 16)
+
+[node name="Block-Block" type="RigidBody2D" parent="." unique_id=434500270 groups=["pushable"]]
+position = Vector2(-152, -696)
+collision_layer = 128
+collision_mask = 0
+mass = 0.3
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 1
+linear_damp = 30.0
+script = SubResource("GDScript_sugp2")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Block-Block" unique_id=1476338374]
+shape = SubResource("RectangleShape2D_0wfyh")
 
 [node name="CameraControl" type="AnimationPlayer" parent="." unique_id=1448359972]
 libraries/ = SubResource("AnimationLibrary_tbgi4")
