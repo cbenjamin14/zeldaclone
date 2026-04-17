@@ -2,15 +2,18 @@ extends CharacterBody2D
 @export var base_speed = 3000
 @export var sprint_mult = 1.5 #made it 3 in the player for convenience, change later
 @export var hp = 5
+@export var colliding_mult = 8 #just changes how fast you push blocks
 var move
 var input : Vector2
 var last_input = null
 var currently_attacking = false
 var sprint = false
 
+#small bug where if you go on the top of the moveable box it drags you down with it --Aiden
 #can we get collisions like in our other games? -- Eli 
 #need to fix animation looping -- carson
 #need to add sword + other things
+
 func get_input():
 	if currently_attacking == true:
 		return Vector2.ZERO
@@ -71,7 +74,7 @@ func _physics_process(delta):
 		#if collision.get_collider().is_in_group("danger"):
 			#hurt()
 		if collision.get_collider().is_in_group("pushable"):
-			collider.apply_central_impulse(-collision.get_normal())
+			collider.apply_central_impulse(-collision.get_normal() * colliding_mult)
 	move_and_slide()
 
 	
