@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://d2hvpwh34ag2"]
+
+[ext_resource type="Script" uid="uid://cihmvky86hv1k" path="res://scripts/health.gd" id="1_dj8aq"]
+[ext_resource type="Texture2D" uid="uid://ds5c6oan626xw" path="res://assets/sprites/heartjar.png" id="2_5en4g"]
+[ext_resource type="Texture2D" uid="uid://dwkea53xqm8ld" path="res://assets/sprites/heartjar_empty.png" id="3_ua6yw"]
+
+[node name="UI" type="CanvasLayer" unique_id=409489148]
+
+[node name="Hearts" type="HBoxContainer" parent="." unique_id=463361021]
+offset_bottom = 0.10400009
+script = ExtResource("1_dj8aq")
+full_heart = ExtResource("2_5en4g")
+empty_heart = ExtResource("3_ua6yw")
+metadata/_edit_use_anchors_ = true
