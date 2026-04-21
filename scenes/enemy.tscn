@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://de30xqg2o4ixu" path="res://assets/sprites/standin.png" id="1_7k104"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7k104"]
-size = Vector2(97, 96)
+size = Vector2(100, 96)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_md0e3"]
 radius = 198.0101
@@ -15,15 +15,17 @@ collision_mask = 3
 script = ExtResource("1_4gyqm")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2031679901]
+scale = Vector2(0.15, 0.15)
 texture = ExtResource("1_7k104")
 
 [node name="Hurtbox" type="CollisionShape2D" parent="." unique_id=1594181262]
-position = Vector2(0.5, 0)
+scale = Vector2(0.15, 0.15)
 shape = SubResource("RectangleShape2D_7k104")
 
 [node name="Sight" type="Area2D" parent="." unique_id=251924606]
 
 [node name="detection_radius" type="CollisionShape2D" parent="Sight" unique_id=1875412882]
+scale = Vector2(0.2, 0.2)
 shape = SubResource("CircleShape2D_md0e3")
 
 [connection signal="body_entered" from="Sight" to="." method="_on_sight_body_entered"]

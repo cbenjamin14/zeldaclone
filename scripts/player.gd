@@ -8,12 +8,13 @@ var last_input = null
 var currently_attacking = false
 var sprint = false
 
+
 #small bug where if you go on the top of the moveable box it drags you down with it --Aiden
 #can we get collisions like in our other games? -- Eli 
 #need to fix animation looping -- carson
 #need to add sword + other things
 func _ready() -> void:
-	global.player = self
+	global.player = self #makes it so global can find player
 
 func get_input():
 	if currently_attacking == true:
@@ -27,7 +28,7 @@ func get_input():
 		$Sprite2D/AnimationPlayer.speed_scale = 1
 #this section of code is the movment, the movement is just x
 #and y without calculating for pressing both, this means
-#it will just go to your first input when you press 2 things
+#it will just go to your first input when you press 2 things             
 	if Input.is_action_pressed("up"):
 		last_input = "up"
 		move = Vector2(0, -1)

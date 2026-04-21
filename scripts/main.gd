@@ -2,20 +2,19 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	global.tilemap = $Ground
 	global.room = 0 # Replace with function body.
 	$Player.position=$Spawnpoint.position
 	var astar_grid = AStarGrid2D.new()
 	var used_rect = $Ground.get_used_rect().merge($Wall.get_used_rect())
 	astar_grid.region = used_rect
 	astar_grid.cell_size = $Ground.tile_set.tile_size
-	astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
+	astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER #no diagonal, though it can switch between cardinal directions fast
 	astar_grid.update()
 	for cell in $Wall.get_used_cells():
-		astar_grid.set_point_solid(cell, true)
-		print("wall")
+		astar_grid.set_point_solid(cell, true) #seemingly doesnt fully work the way I want it, sometimes enemy clips --Aiden
 	global.astar_grid = astar_grid 
 	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 

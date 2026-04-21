@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://d033rxs26i8mr" path="res://assets/sprites/tilemaps/tilemap.svg" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://blw76hwbdho52" path="res://scripts/main.gd" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://bq83xrun5j2xw" path="res://scenes/player/player.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://cngodxm5vtgu7" path="res://scenes/enemy.tscn" id="3_jyhfs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0wfyh"]
 texture = ExtResource("1_ig7tw")
@@ -776,6 +777,9 @@ scale = Vector2(0.9, 0.9)
 [node name="testpoint" type="Marker2D" parent="." unique_id=53554372]
 position = Vector2(-35, -665)
 scale = Vector2(0.9, 0.9)
+
+[node name="Enemy" parent="." unique_id=123837264 instance=ExtResource("3_jyhfs")]
+position = Vector2(136, -168)
 
 [node name="Player" parent="." unique_id=148422797 instance=ExtResource("2_0xm2m")]
 position = Vector2(83.00001, 15)
