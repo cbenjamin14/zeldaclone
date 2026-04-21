@@ -5,9 +5,11 @@ var player = global.player
 var sees_player = false
 var moving = false
 var target_position = Vector2.ZERO
+var attacking = false
+
 
 func _physics_process(delta: float) -> void: 
-	if sees_player == false:
+	if sees_player == false or attacking == true:
 		return
 	if not moving: #this is so it only updates every block
 		var path = global.go_to_player(global_position) 
@@ -43,3 +45,9 @@ func _on_sight_body_entered(body: Node2D) -> void:
 func get_hit():
 	pass
 	
+
+
+func _on_attack_range_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		attacking = true
+		print("attacked")
