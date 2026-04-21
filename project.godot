@@ -27,6 +27,8 @@ project/assembly_name="zeldaclone"
 player=""
 enemies=""
 pushable=""
+enemy=""
+player_attack=""
 
 [input]
 

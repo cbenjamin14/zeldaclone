@@ -297,7 +297,7 @@ frame = 2
 libraries/ = SubResource("AnimationLibrary_dovo2")
 autoplay = &"idle"
 
-[node name="right_attack" type="Area2D" parent="." unique_id=1128638093]
+[node name="right_attack" type="Area2D" parent="." unique_id=1128638093 groups=["player_attack"]]
 rotation = 1.5707964
 
 [node name="RightHB" type="CollisionShape2D" parent="right_attack" unique_id=1220788476]
@@ -305,7 +305,7 @@ position = Vector2(1.7499996, -8.9375)
 shape = SubResource("RectangleShape2D_onrkg")
 disabled = true
 
-[node name="left_attack" type="Area2D" parent="." unique_id=1252031167]
+[node name="left_attack" type="Area2D" parent="." unique_id=1252031167 groups=["player_attack"]]
 rotation = 4.712389
 
 [node name="LeftHB" type="CollisionShape2D" parent="left_attack" unique_id=784705223]
@@ -313,7 +313,7 @@ position = Vector2(-1.0000001, -9)
 shape = SubResource("RectangleShape2D_onrkg")
 disabled = true
 
-[node name="down_attack" type="Area2D" parent="." unique_id=1579387378]
+[node name="down_attack" type="Area2D" parent="." unique_id=1579387378 groups=["player_attack"]]
 rotation = 3.1415927
 
 [node name="DownHB" type="CollisionShape2D" parent="down_attack" unique_id=704403480]
@@ -321,7 +321,7 @@ position = Vector2(-9.616506e-07, -11)
 shape = SubResource("RectangleShape2D_onrkg")
 disabled = true
 
-[node name="up_attack" type="Area2D" parent="." unique_id=507320912]
+[node name="up_attack" type="Area2D" parent="." unique_id=507320912 groups=["player_attack"]]
 
 [node name="UpHB" type="CollisionShape2D" parent="up_attack" unique_id=647152333]
 position = Vector2(0, -8)
