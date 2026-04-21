@@ -2,6 +2,7 @@ extends CharacterBody2D
 @export var base_speed = 3000
 @export var sprint_mult = 1.5 #made it 3 in the player for convenience, change later
 @export var hp = 5
+signal takedamage
 var move
 var input : Vector2
 var last_input = null
@@ -14,6 +15,7 @@ var sprint = false
 #need to fix animation looping -- carson
 #need to add sword + other things
 func _ready() -> void:
+	takedamage.emit()
 	global.player = self #makes it so global can find player
 
 func get_input():

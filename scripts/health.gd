@@ -33,3 +33,7 @@ func heal(amount):
 	health += amount
 	health = clamp(health, 0, max_health)
 	update_hearts()
+
+
+func _on_player_takedamage() -> void:
+	take_damage(1) # Replace with function body.

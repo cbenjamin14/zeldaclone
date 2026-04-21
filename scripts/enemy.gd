@@ -49,5 +49,5 @@ func get_hit():
 
 func _on_attack_range_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		attacking = true
+		attacking = false
 		print("attacked")
