@@ -7,7 +7,7 @@ var tilemap: TileMapLayer
 
 func go_to_player(enemy_position: Vector2) -> Array[Vector2i]:
 	if not player or not astar_grid or not tilemap:
-		print("something went wrong")
+		print("something went wrong") #if something ends up breaking im going to crash out, this was not fun --Aiden
 		return []
 	var start = tilemap.local_to_map(tilemap.to_local(enemy_position))
 	var end = tilemap.local_to_map(tilemap.to_local(player.global_position))
