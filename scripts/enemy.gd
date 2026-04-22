@@ -42,12 +42,20 @@ func _on_sight_body_entered(body: Node2D) -> void:
 		sees_player = true
 
 
-func get_hit():
-	pass
+func take_damage(amount):
+	health -= amount
+	if health <= 0:
+		queue_free()
 	
 
 
 func _on_attack_range_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		attacking = false
+		if body.has_method("take_damage"):
+			body.take_damage(1)
+		attacking = true
 		print("attacked")
+		$Hit_stun.start()
+
+func _on_hit_stun_timeout() -> void:
+	attacking = false
