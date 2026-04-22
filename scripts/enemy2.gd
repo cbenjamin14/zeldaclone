@@ -1,12 +1,12 @@
 extends CharacterBody2D #we need 2 enemies so ill probbly just make the other one inherit or copy and paste --Aiden
 @export var health = 3
-@export var speed = 25
+@export var speed = 10
 var player = global.player
 var sees_player = false
 var moving = false
 var target_position = Vector2.ZERO
 var attacking = false
-
+var damage = 0
 func _physics_process(delta: float) -> void: 
 	if sees_player == false or attacking == true:
 		return
@@ -65,4 +65,7 @@ func _on_hit_stun_timeout() -> void:
 
 
 func _on_attack_body_entered(body: Node2D) -> void:
-	queue_free()
+	if global.room == 16:
+		damage+=1
+	if damage > 3:
+		queue_free()

@@ -3,6 +3,8 @@ extends CharacterBody2D
 @export var sprint_mult = 1.5 #made it 3 in the player for convenience, change later
 @export var hp = 5
 signal takedamage
+signal orb1get
+signal orb2get
 var move
 var input : Vector2
 var last_input = null
@@ -138,28 +140,7 @@ func deal_damage(hitbox):
 	for body in hitbox.get_overlapping_bodies():
 		if body.is_in_group("enemies") and body.has_method("take_damage"):
 			body.take_damage(1)
-			
-func _attack_up(body: Node2D) -> void:
-	if body.is_in_group("enemies"):
-		if body.has_method("take_damage"):
-			body.take_damage(1)
-		
 
-func _attack_down(body: Node2D) -> void:
-	if body.is_in_group("enemies"):
-		if body.has_method("take_damage"):
-			body.take_damage(1)
-
-
-func _attack_left(body: Node2D) -> void:
-	if body.is_in_group("enemies"):
-		if body.has_method("take_damage"):
-			body.take_damage(1)
-
-func _attack_right(body: Node2D) -> void:
-	if body.is_in_group("enemies"):
-		if body.has_method("take_damage"):
-			body.take_damage(1)
 		
 func take_damage(amount):
 	if invincible == true:
@@ -173,8 +154,20 @@ func take_damage(amount):
 
 	
 func death():
-	pass #go to title screen
+	hp = 5
+	get_tree().change_scene_to_file("res://scenes/titlescreen.tscn")
 
 
 func _on_invincibility_timeout() -> void:
 	invincible = false
+
+
+func _on_orb_1_body_entered(body: Node2D) -> void:
+	if global.room == 13:
+		orb1get.emit() # Replace with function body.
+
+
+func _on_orb_2_body_entered(body: Node2D) -> void:
+	if global.room == 17:
+		orb2get.emit() # Replace with function body.
+		get_tree().change_scene_to_file("res://scenes/closing.tscn")

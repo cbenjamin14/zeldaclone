@@ -256,3 +256,7 @@ func _on_16_to_17_body_shape_entered(body_rid: RID, body: Node2D, body_shape_ind
 	if (global.room != 17) :
 		$CameraControl.play("16to17")
 	global.room=17
+
+
+func _on_player_orb_2_get() -> void:
+	pass # Replace with function body.

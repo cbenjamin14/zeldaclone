@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="zeldaclone"
-run/main_scene="uid://bg1dxjvnsosa7"
+run/main_scene="uid://b8c4wuptf5wip"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
 [autoload]

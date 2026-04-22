@@ -5,9 +5,15 @@
 [ext_resource type="PackedScene" uid="uid://bq83xrun5j2xw" path="res://scenes/player/player.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://d2hvpwh34ag2" path="res://scenes/UI.tscn" id="2_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://cngodxm5vtgu7" path="res://scenes/enemy.tscn" id="3_jyhfs"]
-[ext_resource type="PackedScene" path="res://scenes/sign.tscn" id="4_tefeu"]
+[ext_resource type="PackedScene" uid="uid://dbuu65p0of8c5" path="res://scenes/sign.tscn" id="4_tefeu"]
+[ext_resource type="PackedScene" uid="uid://cqmivqbegh7fn" path="res://scenes/enemy2.tscn" id="6_85g3d"]
 [ext_resource type="AudioStream" uid="uid://dlfpobp3j1u1x" path="res://assets/audio/dirt.wav" id="7_o6xl0"]
+[ext_resource type="Script" uid="uid://c2gs7usts0x7v" path="res://scenes/blockingblcok.gd" id="8_a8y0u"]
 [ext_resource type="AudioStream" uid="uid://3o2wbc6m5ffb" path="res://assets/audio/explosion.wav" id="8_tipki"]
+[ext_resource type="Script" uid="uid://cqssjy8cptteh" path="res://scripts/orb_1.gd" id="8_trceg"]
+[ext_resource type="Texture2D" uid="uid://bo7mv5np2aq6x" path="res://assets/sprites/enemy1.png" id="8_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://ckaijxhsn3dgn" path="res://assets/sprites/enemy2.png" id="9_eb6dy"]
+[ext_resource type="Script" uid="uid://lnfmed2uigbu" path="res://scripts/orb_2.gd" id="11_a8y0u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0wfyh"]
 texture = ExtResource("1_ig7tw")
@@ -56,6 +62,15 @@ texture = ExtResource("1_ig7tw")
 physics_layer_0/collision_layer = 4
 sources/1 = SubResource("TileSetAtlasSource_sugp2")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7k104"]
+size = Vector2(106.666664, 106.666664)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_md0e3"]
+radius = 198.0101
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_md0e3"]
+size = Vector2(17, 17)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wfyh"]
 size = Vector2(16, 16)
 
@@ -70,6 +85,12 @@ size = Vector2(32, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o6xl0"]
 size = Vector2(128, 37)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jkv2x"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jbj1t"]
+radius = 7.0
 
 [sub_resource type="Animation" id="Animation_5poiv"]
 resource_name = "0"
@@ -783,7 +804,7 @@ position = Vector2(471, -450)
 position = Vector2(80, -24)
 zoom = Vector2(5.175, 4.565)
 
-[node name="Sapawnpoint" type="Marker2D" parent="." unique_id=1380886590]
+[node name="Spawnpoint" type="Marker2D" parent="." unique_id=1380886590]
 position = Vector2(83.00001, 10)
 scale = Vector2(0.9, 0.9)
 
@@ -795,12 +816,23 @@ scale = Vector2(0.9, 0.9)
 position = Vector2(-138, -664)
 scale = Vector2(0.9, 0.9)
 
-[node name="Spawnpoint" type="Marker2D" parent="." unique_id=53554372]
-position = Vector2(-35, -665)
-scale = Vector2(0.9, 0.9)
-
 [node name="Enemy" parent="." unique_id=123837264 groups=["enemy"] instance=ExtResource("3_jyhfs")]
 position = Vector2(136, -168)
+
+[node name="Hurtbox" parent="Enemy" index="1" unique_id=1594181262]
+shape = SubResource("RectangleShape2D_7k104")
+
+[node name="detection_radius" parent="Enemy/Sight" parent_id_path=PackedInt32Array(123837264, 251924606) index="0" unique_id=1875412882]
+shape = SubResource("CircleShape2D_md0e3")
+
+[node name="hit_range" parent="Enemy/attack_range" parent_id_path=PackedInt32Array(123837264, 57459831) index="0" unique_id=491596403]
+shape = SubResource("RectangleShape2D_md0e3")
+
+[node name="Enemy2" parent="." unique_id=1805956536 instance=ExtResource("6_85g3d")]
+position = Vector2(533, -536)
+
+[node name="Sight" parent="Enemy2" index="2" unique_id=251924606]
+scale = Vector2(0.49, 0.49)
 
 [node name="Player" parent="." unique_id=148422797 instance=ExtResource("2_0xm2m")]
 position = Vector2(83.00001, 15)
@@ -825,6 +857,27 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_0wfyh")
 
 [node name="Sprite2D" type="Sprite2D" parent="Pushable-Block" unique_id=779413160]
+texture = ExtResource("1_ig7tw")
+region_enabled = true
+region_rect = Rect2(48, 0, 16, 16)
+
+[node name="Blockingblcok" type="RigidBody2D" parent="." unique_id=319657346 groups=["pushable"]]
+position = Vector2(392, -408)
+collision_layer = 5
+collision_mask = 133
+mass = 1000.0
+gravity_scale = 0.0
+lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 1
+linear_damp = 30.0
+script = ExtResource("8_a8y0u")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blockingblcok" unique_id=2139469810]
+shape = SubResource("RectangleShape2D_0wfyh")
+
+[node name="Sprite2D" type="Sprite2D" parent="Blockingblcok" unique_id=256310718]
 texture = ExtResource("1_ig7tw")
 region_enabled = true
 region_rect = Rect2(48, 0, 16, 16)
@@ -878,6 +931,43 @@ gravity_scale = 0.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D4" unique_id=577668361]
 position = Vector2(118, -56.5)
 shape = SubResource("RectangleShape2D_o6xl0")
+
+[node name="Orb1" type="Area2D" parent="." unique_id=386704882]
+position = Vector2(-390, -679)
+script = ExtResource("8_trceg")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Orb1" unique_id=765958229]
+texture = ExtResource("8_ya4ey")
+flip_v = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="Orb1" unique_id=1672680834]
+position = Vector2(0, 4)
+texture = ExtResource("9_eb6dy")
+region_enabled = true
+region_rect = Rect2(0, 8, 16, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Orb1" unique_id=382947152]
+shape = SubResource("CircleShape2D_jkv2x")
+
+[node name="Orb2" type="Area2D" parent="." unique_id=1027885882]
+position = Vector2(704, -544)
+rotation = 3.1415927
+script = ExtResource("11_a8y0u")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Orb2" unique_id=1784797236]
+texture = ExtResource("8_ya4ey")
+flip_v = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="Orb2" unique_id=575148960]
+position = Vector2(0, 4)
+texture = ExtResource("9_eb6dy")
+region_enabled = true
+region_rect = Rect2(0, 8, 16, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Orb2" unique_id=1964924041]
+shape = SubResource("CircleShape2D_jbj1t")
 
 [node name="CameraControl" type="AnimationPlayer" parent="." unique_id=1448359972]
 libraries/ = SubResource("AnimationLibrary_tbgi4")
@@ -1162,12 +1252,27 @@ shape = SubResource("RectangleShape2D_tefeu")
 [node name="Backgroundmusic" type="AudioStreamPlayer2D" parent="." unique_id=1775909048]
 stream = ExtResource("7_o6xl0")
 autoplay = true
+metadata/_edit_lock_ = true
 
 [node name="DieSound" type="AudioStreamPlayer" parent="." unique_id=1154794902]
 stream = ExtResource("8_tipki")
 
 [connection signal="die" from="UI/Hearts" to="." method="playerDied"]
+[connection signal="orb1get" from="Player" to="Blockingblcok" method="_on_player_orb_1_get"]
+[connection signal="orb1get" from="Player" to="Orb1" method="_on_player_orb_1_get"]
+[connection signal="orb2get" from="Player" to="." method="_on_player_orb_2_get"]
+[connection signal="orb2get" from="Player" to="Orb2" method="_on_player_orb_2_get"]
 [connection signal="takedamage" from="Player" to="UI/Hearts" method="_on_player_takedamage"]
+[connection signal="body_entered" from="Player/right_attack" to="Enemy" method="_on_attack_body_entered"]
+[connection signal="body_entered" from="Player/right_attack" to="Enemy2" method="_on_attack_body_entered"]
+[connection signal="body_entered" from="Player/left_attack" to="Enemy" method="_on_attack_body_entered"]
+[connection signal="body_entered" from="Player/left_attack" to="Enemy2" method="_on_attack_body_entered"]
+[connection signal="body_entered" from="Player/down_attack" to="Enemy" method="_on_attack_body_entered"]
+[connection signal="body_entered" from="Player/down_attack" to="Enemy2" method="_on_attack_body_entered"]
+[connection signal="body_entered" from="Player/up_attack" to="Enemy" method="_on_attack_body_entered"]
+[connection signal="body_entered" from="Player/up_attack" to="Enemy2" method="_on_attack_body_entered"]
+[connection signal="body_entered" from="Orb1" to="Player" method="_on_orb_1_body_entered"]
+[connection signal="body_entered" from="Orb2" to="Player" method="_on_orb_2_body_entered"]
 [connection signal="body_shape_entered" from="0to1" to="." method="_on_0_to_1_body_shape_entered"]
 [connection signal="body_shape_entered" from="1to0" to="." method="_on_1_to_0_body_shape_entered"]
 [connection signal="body_shape_entered" from="0to2" to="." method="_on_0_to_2_body_shape_entered"]
@@ -1208,3 +1313,6 @@ stream = ExtResource("8_tipki")
 [connection signal="body_shape_entered" from="16to17" to="." method="_on_16_to_17_body_shape_entered"]
 
 [editable path="UI"]
+[editable path="Enemy"]
+[editable path="Enemy2"]
+[editable path="Player"]

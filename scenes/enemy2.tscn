@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://cqmivqbegh7fn"]
+
+[ext_resource type="Script" uid="uid://1box5wqdg8uj" path="res://scripts/enemy2.gd" id="1_mhmjl"]
+[ext_resource type="Texture2D" uid="uid://ckaijxhsn3dgn" path="res://assets/sprites/enemy2.png" id="2_23kvp"]
+[ext_resource type="AudioStream" uid="uid://boqgka5ptqpn2" path="res://assets/audio/hitHurt.wav" id="3_4e2ig"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7k104"]
+size = Vector2(106.666664, 106.666664)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_md0e3"]
+radius = 198.0101
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_md0e3"]
+size = Vector2(17, 17)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=123837264 groups=["enemies"]]
+scale = Vector2(3, 3)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_mhmjl")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2031679901]
+texture = ExtResource("2_23kvp")
+
+[node name="Hurtbox" type="CollisionShape2D" parent="." unique_id=1594181262]
+position = Vector2(2.9802322e-07, 2.9802322e-07)
+scale = Vector2(0.15, 0.15)
+shape = SubResource("RectangleShape2D_7k104")
+
+[node name="Sight" type="Area2D" parent="." unique_id=251924606]
+
+[node name="detection_radius" type="CollisionShape2D" parent="Sight" unique_id=1875412882]
+scale = Vector2(0.2, 0.2)
+shape = SubResource("CircleShape2D_md0e3")
+
+[node name="attack_range" type="Area2D" parent="." unique_id=57459831]
+
+[node name="hit_range" type="CollisionShape2D" parent="attack_range" unique_id=491596403]
+shape = SubResource("RectangleShape2D_md0e3")
+
+[node name="Hit_stun" type="Timer" parent="." unique_id=1099225856]
+one_shot = true
+
+[node name="HurtSound" type="AudioStreamPlayer" parent="." unique_id=656913568]
+stream = ExtResource("3_4e2ig")
+
+[connection signal="body_entered" from="Sight" to="." method="_on_sight_body_entered"]
+[connection signal="body_entered" from="attack_range" to="." method="_on_attack_range_body_entered"]
+[connection signal="timeout" from="Hit_stun" to="." method="_on_hit_stun_timeout"]
