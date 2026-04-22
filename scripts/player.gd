@@ -51,11 +51,7 @@ func get_input():
 
 	if Input.is_action_just_pressed("attack"):
 		attack()
-	else: 
-		$down_attack/DownHB.disabled = true
-		$up_attack/UpHB.disabled = true
-		$right_attack/RightHB.disabled = true
-		$left_attack/LeftHB.disabled = true
+
 	return move.normalized()
 	#six seven
 func _physics_process(delta):
@@ -92,7 +88,8 @@ func attack():
 		$Sword_up.hide()
 		$Attack_cd.start()
 		currently_attacking = false
-		
+		$up_attack/UpHB.disabled = true
+
 	elif last_input == "down":
 		$Sprite2D/AnimationPlayer.play("attack_down")
 		print("attacked down")
@@ -102,6 +99,8 @@ func attack():
 		$Sword_down.hide()
 		$Attack_cd.start()
 		currently_attacking = false
+		$down_attack/DownHB.disabled = true
+
 
 	elif last_input == "left":
 		$Sprite2D/AnimationPlayer.play("attack_left")
@@ -112,7 +111,8 @@ func attack():
 		$Sword_left.hide()
 		$Attack_cd.start()
 		currently_attacking = false
-		
+		$left_attack/LeftHB.disabled = true
+
 	elif last_input == "right":
 		$Sprite2D/AnimationPlayer.play("attack_right")
 		print("attacked right")
@@ -122,6 +122,7 @@ func attack():
 		$Sword_right.hide()
 		$Attack_cd.start()
 		currently_attacking = false
+		$right_attack/RightHB.disabled = true
 		
 	else: #means they probably didt move yet, else thats not good
 		$Sprite2D/AnimationPlayer.play("attack_down")
@@ -133,7 +134,11 @@ func attack():
 		$Attack_cd.start()
 		currently_attacking = false
 
-
+func deal_damage(hitbox):
+	for body in hitbox.get_overlapping_bodies():
+		if body.is_in_group("enemies") and body.has_method("take_damage"):
+			body.take_damage(1)
+			
 func _attack_up(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
 		if body.has_method("take_damage"):
