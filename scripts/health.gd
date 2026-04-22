@@ -35,5 +35,5 @@ func heal(amount):
 	update_hearts()
 
 
-func _on_player_takedamage() -> void:
-	take_damage(1) # Replace with function body.
+func _on_player_takedamage(amount) -> void:
+	take_damage(amount) # Replace with function body.

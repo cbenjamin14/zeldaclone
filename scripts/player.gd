@@ -8,14 +8,9 @@ var input : Vector2
 var last_input = null
 var currently_attacking = false
 var sprint = false
+var invincible = false
 
-
-#small bug where if you go on the top of the moveable box it drags you down with it --Aiden
-#can we get collisions like in our other games? -- Eli 
-#need to fix animation looping -- carson
-#need to add sword + other things
 func _ready() -> void:
-	takedamage.emit()
 	global.player = self #makes it so global can find player
 
 func get_input():
@@ -141,18 +136,40 @@ func attack():
 
 func _attack_up(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
-		pass
+		if body.has_method("take_damage"):
+			body.take_damage(1)
 		
 
 func _attack_down(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
-		pass
+		if body.has_method("take_damage"):
+			body.take_damage(1)
 
 
 func _attack_left(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
-		pass
+		if body.has_method("take_damage"):
+			body.take_damage(1)
 
 func _attack_right(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
-		pass
+		if body.has_method("take_damage"):
+			body.take_damage(1)
+		
+func take_damage(amount):
+	if invincible == true:
+		return
+	takedamage.emit(amount) 
+	hp -= amount
+	if hp <= 0:
+		death()
+	invincible = true
+	$Invincibility.start()
+
+	
+func death():
+	pass #go to title screen
+
+
+func _on_invincibility_timeout() -> void:
+	invincible = false

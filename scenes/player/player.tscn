@@ -354,7 +354,12 @@ rotation = 1.5707964
 wait_time = 0.15
 one_shot = true
 
+[node name="Invincibility" type="Timer" parent="." unique_id=187305252]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="body_entered" from="right_attack" to="." method="_attack_right"]
 [connection signal="body_entered" from="left_attack" to="." method="_attack_left"]
 [connection signal="body_entered" from="down_attack" to="." method="_attack_down"]
 [connection signal="body_entered" from="up_attack" to="." method="_attack_up"]
+[connection signal="timeout" from="Invincibility" to="." method="_on_invincibility_timeout"]

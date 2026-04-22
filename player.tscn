@@ -9,7 +9,7 @@ size = Vector2(96, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i3pqv"]
 size = Vector2(98, 97)
 
-[node name="Player" type="CharacterBody2D" unique_id=148422797]
+[node name="Player" type="CharacterBody2D" unique_id=148422797 groups=["player"]]
 scale = Vector2(0.75, 0.75)
 collision_layer = 2
 collision_mask = 7

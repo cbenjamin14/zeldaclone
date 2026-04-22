@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://dbuu65p0of8c5"]
+
+[ext_resource type="Script" uid="uid://cgaexc0xpc4of" path="res://scripts/sign.gd" id="1_w2mlg"]
+[ext_resource type="Texture2D" uid="uid://bc4mojgxckeo1" path="res://assets/sprites/sign.png" id="2_q3tny"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tbceu"]
+radius = 32.0
+
+[node name="Sign" type="Node2D" unique_id=164442469]
+script = ExtResource("1_w2mlg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1321751465]
+texture = ExtResource("2_q3tny")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1914303263]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=617697353]
+shape = SubResource("CircleShape2D_tbceu")
+
+[node name="sign text" type="RichTextLabel" parent="." unique_id=1089304205]
+visible = false
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 53.999992
+offset_bottom = 23.999996
+scale = Vector2(0.2, 0.2)
+theme_override_font_sizes/normal_font_size = 16
+text = "boss ^"
+
+[node name="interact prompt" type="RichTextLabel" parent="." unique_id=192229485]
+visible = false
+offset_left = -13.0
+offset_top = 17.0
+offset_right = 131.99998
+offset_bottom = 51.999992
+scale = Vector2(0.2, 0.2)
+text = "press e to interact"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
