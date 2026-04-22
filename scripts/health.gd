@@ -2,7 +2,7 @@ extends HBoxContainer
 
 @export var max_health := 5
 var health := 5
-
+signal die
 @export var full_heart: Texture2D
 @export var empty_heart: Texture2D
 
@@ -20,7 +20,8 @@ func update_hearts():
 			heart.texture = full_heart
 		else:
 			heart.texture = empty_heart
-
+		if health == 0:
+			die.emit()
 		add_child(heart)
 
 #call func: $UI/hearts.take_damage(1)

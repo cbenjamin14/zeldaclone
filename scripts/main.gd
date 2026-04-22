@@ -17,6 +17,13 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+func playerDied():
+	$DieSound.play()
+	$Player.hide()
+	await $DieSound.finished
+	if get_tree():
+		get_tree().reload_current_scene()
+
 @warning_ignore_start("unused_parameter")
 
 func _on_0_to_1_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:

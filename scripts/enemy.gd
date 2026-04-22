@@ -55,6 +55,7 @@ func _on_attack_range_body_entered(body: Node2D) -> void:
 			body.take_damage(1)
 		attacking = true
 		print("attacked")
+		$HurtSound.play()
 		$Hit_stun.start()
 
 func _on_hit_stun_timeout() -> void:

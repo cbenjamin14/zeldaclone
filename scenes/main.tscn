@@ -5,7 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://bq83xrun5j2xw" path="res://scenes/player/player.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://d2hvpwh34ag2" path="res://scenes/UI.tscn" id="2_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://cngodxm5vtgu7" path="res://scenes/enemy.tscn" id="3_jyhfs"]
-[ext_resource type="PackedScene" uid="uid://dbuu65p0of8c5" path="res://scenes/sign.tscn" id="4_tefeu"]
+[ext_resource type="PackedScene" path="res://scenes/sign.tscn" id="4_tefeu"]
+[ext_resource type="AudioStream" uid="uid://dlfpobp3j1u1x" path="res://assets/audio/dirt.wav" id="7_o6xl0"]
+[ext_resource type="AudioStream" uid="uid://3o2wbc6m5ffb" path="res://assets/audio/explosion.wav" id="8_tipki"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0wfyh"]
 texture = ExtResource("1_ig7tw")
@@ -1157,6 +1159,14 @@ metadata/_edit_lock_ = true
 position = Vector2(14, 408)
 shape = SubResource("RectangleShape2D_tefeu")
 
+[node name="Backgroundmusic" type="AudioStreamPlayer2D" parent="." unique_id=1775909048]
+stream = ExtResource("7_o6xl0")
+autoplay = true
+
+[node name="DieSound" type="AudioStreamPlayer" parent="." unique_id=1154794902]
+stream = ExtResource("8_tipki")
+
+[connection signal="die" from="UI/Hearts" to="." method="playerDied"]
 [connection signal="takedamage" from="Player" to="UI/Hearts" method="_on_player_takedamage"]
 [connection signal="body_shape_entered" from="0to1" to="." method="_on_0_to_1_body_shape_entered"]
 [connection signal="body_shape_entered" from="1to0" to="." method="_on_1_to_0_body_shape_entered"]

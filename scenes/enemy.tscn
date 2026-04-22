@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dhako7qn5k0fl" path="res://scripts/enemy.gd" id="1_4gyqm"]
 [ext_resource type="Texture2D" uid="uid://bo7mv5np2aq6x" path="res://assets/sprites/enemy1.png" id="2_md0e3"]
+[ext_resource type="AudioStream" uid="uid://boqgka5ptqpn2" path="res://assets/audio/hitHurt.wav" id="3_4ra3w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7k104"]
 size = Vector2(106.666664, 106.666664)
@@ -39,6 +40,9 @@ shape = SubResource("RectangleShape2D_md0e3")
 
 [node name="Hit_stun" type="Timer" parent="." unique_id=1099225856]
 one_shot = true
+
+[node name="HurtSound" type="AudioStreamPlayer" parent="." unique_id=656913568]
+stream = ExtResource("3_4ra3w")
 
 [connection signal="body_entered" from="Sight" to="." method="_on_sight_body_entered"]
 [connection signal="body_entered" from="attack_range" to="." method="_on_attack_range_body_entered"]
